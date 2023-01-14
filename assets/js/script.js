@@ -14,12 +14,11 @@ function getLocation(city) {
       tmBasketball(coordinates)
     });
 }
-
+//_embedded.events[0].name -- home vs away
+// home icon
+//_embedded.events[0]._embedded.attractions[1].images[0].url -- away icon
+//_embedded.events[0]._embedded.attractions[1].images[1].url -- diff size away icon (goes til [9])
 function tmBasketball() {
-  const start = new Date(Date.UTC(2023, 0, 15))
-  const end = new Date(Date.UTC(2023, 2, 15))
-
-
   var apiKey = `9XshdGRWAPA44uov6ogAAGLaYkru76D3`;
   var baseUrl = `https://app.ticketmaster.com`;
   // var basketball = `/discovery/v2/classifications/genres/1`
@@ -30,6 +29,8 @@ function tmBasketball() {
   var endDateStr = '&endDateTime=2023-03-15T02:00:00Z'
   var latlongStr = `&latlong=${coordinates.lat},${coordinates.lon}`
   var requestUrl = `${baseUrl}${events}?apikey=${apiKey}&keyword=${keyword}&subGenreId=${subGenreId}${startDateStr}${endDateStr}`;
+
+
   // &subGrenreId=${subGenreId}&pages=1000&per_page=100
   fetch(requestUrl)
     .then((response) => {
