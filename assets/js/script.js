@@ -352,14 +352,14 @@ function displayPlayerStats(pStatObj) {
       Height : (stats.height_feet + "-" + stats.height_inches),
       Position : stats.position,
       Weight: stats.weight_pounds,
-      pts: stats.pts.toFixed(1),
-      reb:  (stats.oreb + stats.dreb).toFixed(1),
-      ast: stats.ast.toFixed(1),
-      fgp: (stats.fg_pct * 100).toFixed(1),
-      fg3p: (stats.fg3_pct * 100).toFixed(1),
-      stl: stats.stl,
-      blk: stats.blk,
-      to: stats.turnover
+      PTS: stats.pts.toFixed(1),
+      REB:  (stats.oreb + stats.dreb).toFixed(1),
+      AST: stats.ast.toFixed(1),
+      FGP: (stats.fg_pct * 100).toFixed(1),
+      FG3P: (stats.fg3_pct * 100).toFixed(1),
+      STL: stats.stl,
+      BLK: stats.blk,
+      TO: stats.turnover
         
     }
 
@@ -367,12 +367,21 @@ function displayPlayerStats(pStatObj) {
   function displayPlayerProfile (player){
 
   // create
-    var nameEl = $("<h2>");
+    // var nameEl = $("<h2>");
+    var profileEl = $("<ul>");
+    Object.entries(player).forEach(([key, value]) => {
+    var listEl = $("<li>");
+    listEl.text(key + " " + value)
+    profileEl.append(listEl);
+    })
 
     // set 
-    nameEl.text(player.Name)
+    // nameEl.text(player.Name)
     // append
-    $("#single-player-stats").append(nameEl)
+    // $("#single-player-stats").append(nameEl)
+    // $("#playerExtStats").append(profileEl)
+    $("#player-box").append(profileEl);
+    profileEl.append(listEl);
   }
 
   function setLocalStorage(favoritePlayers) {
@@ -387,7 +396,15 @@ function displayPlayerStats(pStatObj) {
    popTeamListing();
    populateTeamList();
 
+  //  $("#modal").click(() => {
+
+  //  })
  }
 
+
+
+
 init()
+
+
 
